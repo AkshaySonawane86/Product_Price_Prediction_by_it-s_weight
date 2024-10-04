@@ -1,0 +1,36 @@
+Enter password: ********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 91
+Server version: 8.0.36 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database priceprediction;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use priceprediction;
+Database changed
+mysql> create table category(Category_id int(5) primary key auto_increment,CName varchar(100) not null);
+Query OK, 0 rows affected, 1 warning (0.04 sec)
+
+mysql> create table product(Product_id int(5) primary key auto_increment,PName varchar(100) not null,Category_id int(5), foreign key(Category_id) references category(Category_id) on delete cascade on update cascade,weight int(5) not null,price int(5) not null);
+Query OK, 0 rows affected, 4 warnings (0.07 sec)
+
+mysql> create table admin(Admin_id int(5) primary key auto_increment,Apassword varchar(100) not null,contact varchar(100) not null,Product_id int(5),foreign key(Product_id) references product(Product_id) on delete cascade on update cascade);
+Query OK, 0 rows affected, 2 warnings (0.07 sec)
+
+mysql> create table customer(Customer_id int(5) primary key auto_increment,Name varchar(100) not null,Password int(5) no
+t null,Contact varchar(100) not null);
+Query OK, 0 rows affected, 2 warnings (0.02 sec)
+
+mysql> create table Order_Table(Customer_id int(5), foreign key(Customer_id) references customer(Customer_id) on delete
+cascade on update cascade,Order_Date date);
+Query OK, 0 rows affected, 1 warning (0.06 sec)
+
+mysql>
